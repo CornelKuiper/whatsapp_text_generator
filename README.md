@@ -5,3 +5,7 @@ Argument 1: the filename (and the path if necessary) (so whatsapp_messages.txt)<
 Argument 2: the length of the generated sentences<br/>
 Argument 3: the amount of generated sentences<br/>
 Argument 4: the minimum length of messages that are used for the chains (so if 5, messages with 5 words will not be used)<br/>
+<br/>
+Requirements: <br/>
+numpy: sudo pip install numpy <br/>
+nltk: sudo pip install nltk <br/>
