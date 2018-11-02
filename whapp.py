@@ -14,18 +14,21 @@ def make_dict(pairs):
             word_dict[word_1].append(word_2)
         else:
             word_dict[word_1] = [word_2]
+    # print(word_dict['Ik'])
     return word_dict
 
 def make_stuff(word_dict, corpus, n_words=20):
+    stop_list = ['.']
+
     first_word = np.random.choice(corpus)
-    while first_word.islower():
+    while first_word.islower() or not first_word.isalpha():
         first_word = np.random.choice(corpus)
 
     chain = [first_word]
 
-    for i in range(n_words):
+    # for i in range(n_words):
+    while chain[-1] not in stop_list and len(chain)<n_words:
         chain.append(np.random.choice(word_dict[chain[-1]]))
-
     return ' '.join(chain)
 
 def filter_words(words):
@@ -55,6 +58,7 @@ def clean_whatsapp(filename):
             split_line = split_line.split(':')
             split_line = " ".join(split_line[1:])
             if "omitted>" not in split_line:
+                split_line = split_line + " ."
                 extracted_lines.append(split_line)
     textfile.close()  
     return extracted_lines
